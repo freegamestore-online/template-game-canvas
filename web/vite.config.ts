@@ -34,6 +34,12 @@ export default defineConfig({
           },
         ],
       },
+      // `min_viewport_width` is a FreeGameStore-specific compliance field
+      // (read by @freegamestore/compliance viewport-support check), not a
+      // standard PWA manifest member — vite-plugin-pwa's ManifestOptions
+      // type rejects it, so we widen the type to allow the extra key. The
+      // field passes through to the emitted manifest.webmanifest; browsers
+      // ignore unknown members.
       manifest: {
         name: "APPNAME",
         short_name: "APPNAME",
@@ -48,7 +54,7 @@ export default defineConfig({
           { src: "/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any maskable" },
           { src: "/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" },
         ],
-      },
+      } as Record<string, unknown>,
     }),
   ],
   test: {
