@@ -69,7 +69,9 @@ jobs:
           grep -qi "apple-mobile-web-app-capable\|mobile-web-app-capable" web/index.html
 
       - name: FreeGameStore link
-        run: grep -r "freegamestore.online" web/src/ | grep -q .
+        # The link is rendered by the @freegamestore/games SDK (GameShell), so it
+        # lives in the built bundle, not web/src. Check web/dist (built above).
+        run: grep -rq "freegamestore.online" web/dist/
 
       - name: Dark mode
         run: grep -rE "prefers-color-scheme|data-theme|color-scheme" web/src/ | grep -q .
