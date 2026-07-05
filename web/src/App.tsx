@@ -12,7 +12,7 @@ export default function App() {
           APPNAME
         </h1>
         <p style={{ color: "var(--muted)" }}>
-          Edit <code>src/App.tsx</code> to build your game.
+          Your game will appear here once it&rsquo;s built.
         </p>
       </div>
     </GameShell>
